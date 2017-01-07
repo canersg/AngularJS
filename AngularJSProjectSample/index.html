@@ -1,0 +1,70 @@
+﻿<html ng-app="CustomerApp" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <!--Angular Library-->
+    <script src="lib/angular.min.js" type="text/javascript"> </script>
+    <!--Grid Library minified-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/6.2.1/ag-grid.min.js"></script>
+    <!--Grid Css Lib minified-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css" type="text/css"> </script>
+    <!-- Import Jquery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <!--Main App JS-->
+    <script src="app/app.js"></script>
+    <!--Sample Customer Rest Data-->
+    <script src="app/ExternalRepo/customer.json" type="text/javascript"> </script>
+    <!-- Style of the Grid -->
+    <style>
+        .gridStyle {
+            border: 1px solid rgb(212,212,212);
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<!-- Start html body and define ng-controller -->
+<body ng-controller="CustomerController">
+    <!-- Retrieve header in the scope -->
+    <h2>{{Header}}</h2>
+    
+    <!--Retrieve Warning Message -->
+    {{Warning.warning1}}
+    <br />
+    <br />
+    <!-- Initilize table for: when user select one of the rows print screen-->
+    <table>
+        <tbody>
+            <tr>
+                <!-- Define table headers: firstname,lastname,email -->
+                <td></td>
+                <td style="border: solid;">{{columnDefs[0].headerName}}
+                </td>
+                <td style="border: solid;">{{columnDefs[1].headerName}}
+                </td>
+                <td style="border: solid;">{{columnDefs[2].headerName}}
+                </td>
+            </tr>
+            <tr>
+                <!-- Sets table's first row when user click table (mix jquery and angular) -->
+                <td style="border: solid;">{{"Selected"}}
+                </td>
+                <td style="border: solid; width: 78px;"><span id="selectedCustomerName"></span>
+                </td>
+                <td style="border: solid; width: 78px;"><span id="selectedCustomerSurname"></span>
+                </td>
+                <td style="border: solid; width: 178px;"><span id="selectedCustomerEmail"></span>
+                </td>
+                <td>
+                    <!--Add button for sending Email -->
+                    <button ng-click="SendMail()">
+                        {{"Send Email"}}
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <!-- Define grid element -->
+    <div ag-grid="gridOptions" class="ag-fresh" style="width: 600px;"></div>
+</body>
+</html>
